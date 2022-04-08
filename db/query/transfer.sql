@@ -16,4 +16,4 @@ WHERE id = $1;
 
 -- name: ListTransfer :many
 SELECT * FROM transfers
-ORDER BY owner LIMIT $1 OFFSET $2;
+ORDER BY id LIMIT $1 OFFSET $2;
