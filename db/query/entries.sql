@@ -8,11 +8,11 @@ RETURNING *;
 
 -- name: GetEntries :one
 SELECT * FROM entries
-WHERE id = ? LIMIT 1;
+WHERE id = $1 LIMIT 1;
 
 -- name: DeleteEntries :exec
 DELETE FROM entries
-WHERE id = ?;
+WHERE id = $1;
 
 -- name: ListEntries :many
 SELECT * FROM entries

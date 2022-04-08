@@ -8,11 +8,11 @@ RETURNING *;
 
 -- name: GetTransfer :one
 SELECT * FROM transfers
-WHERE id = ? LIMIT 1;
+WHERE id = $1 LIMIT 1;
 
 -- name: DeleteTransfer :exec
 DELETE FROM transfers
-WHERE id = ?;
+WHERE id = $1;
 
 -- name: ListTransfer :many
 SELECT * FROM transfers

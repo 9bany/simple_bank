@@ -39,7 +39,7 @@ func (q *Queries) CreateTransfer(ctx context.Context, arg CreateTransferParams) 
 
 const deleteTransfer = `-- name: DeleteTransfer :exec
 DELETE FROM transfers
-WHERE id = ?
+WHERE id = $1
 `
 
 func (q *Queries) DeleteTransfer(ctx context.Context, id int64) error {
@@ -49,7 +49,7 @@ func (q *Queries) DeleteTransfer(ctx context.Context, id int64) error {
 
 const getTransfer = `-- name: GetTransfer :one
 SELECT id, from_account_id, to_account_id, amount, created_at FROM transfers
-WHERE id = ? LIMIT 1
+WHERE id = $1 LIMIT 1
 `
 
 func (q *Queries) GetTransfer(ctx context.Context, id int64) (Transfers, error) {
