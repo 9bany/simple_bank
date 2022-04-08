@@ -28,6 +28,9 @@ func createRandomTransfer(t *testing.T) Transfers {
 	require.Equal(t, transfer.FromAccountID, accountFrom.ID)
 	require.Equal(t, transfer.ToAccountID, accountTo.ID)
 	require.Equal(t, transfer.Amount, arg.Amount)
+
+	require.NotZero(t, transfer.ID)
+	require.NotZero(t, transfer.CreatedAt)
 	return transfer
 }
 func TestCreateTransfer(t *testing.T) {
@@ -72,6 +75,9 @@ func TestListTransfers(t *testing.T) {
 
 	transfers, err := testQueries.ListTransfer(context.Background(), arg)
 	require.NoError(t, err)
-	require.NotEmpty(t, transfers)
 	require.Len(t, transfers, 5)
+
+	for _, transfer := range transfers {
+		require.NotEmpty(t, transfer)
+	}
 }
