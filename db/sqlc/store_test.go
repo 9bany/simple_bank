@@ -3,6 +3,7 @@ package db
 import (
 	"context"
 	"testing"
+	"time"
 
 	"github.com/stretchr/testify/require"
 )
@@ -14,7 +15,7 @@ func TestTransferTx(t *testing.T) {
 	account2 := createRandomAccount(t)
 
 	// run n concurrent tranfer transactions
-	n := 5
+	n := 1
 	amount := int64(10)
 
 	errors := make(chan error)
@@ -73,6 +74,16 @@ func TestTransferTx(t *testing.T) {
 		_, err = store.GetEntries(context.Background(), toEntry.ID)
 		require.NoError(t, err)
 
-		// TODO: check accounts' balance
+		fromAccount := result.FromAccount
+		require.NotEmpty(t, fromAccount)
+		require.Equal(t, account1.ID, fromAccount.ID)
+		require.Equal(t, account1.Balance-amount, fromAccount.Balance)
+		require.WithinDuration(t, account1.CreatedAt, fromAccount.CreatedAt, time.Second)
+
+		toAccount := result.ToAccount
+		require.NotEmpty(t, toAccount)
+		require.Equal(t, account2.ID, toAccount.ID)
+		require.Equal(t, account2.Balance+amount, toAccount.Balance)
+		require.WithinDuration(t, account2.CreatedAt, toAccount.CreatedAt, time.Second)
 	}
 }
