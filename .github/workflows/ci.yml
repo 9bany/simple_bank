@@ -9,7 +9,7 @@ on:
 jobs:
   test:
     name: Test
-    runs-on: ubuntu-latest
+    runs-on: macos-latest
     services:
       postgres:
         image: postgres
@@ -30,10 +30,7 @@ jobs:
       with:
         go-version: 1.17
     - name: Install migrate
-      run: |
-        curl -L https://github.com/golang-migrate/migrate/releases/download/$version/migrate.$platform-amd64.tar.gz | tar -xvzf
-        sudo mv migrate.linux-amd64 /usr/bin/
-        which migrate
+      run: brew install migrate
 
     - name: Run migration
       run: make migrateup 
