@@ -10,7 +10,7 @@ import (
 
 type CreateAccountRequest struct {
 	Owner    string `json:"owner" binding:"required"`
-	Currency string `json:"currency" binding:"required,oneof=USD EUR"`
+	Currency string `json:"currency" binding:"required,currency"`
 }
 
 func (server *Server) createAccount(ctx *gin.Context) {
@@ -73,8 +73,8 @@ func (server *Server) listAccount(ctx *gin.Context) {
 		return
 	}
 
-	arg := db.ListAccountsParams {
-		Limit: req.PageSize,
+	arg := db.ListAccountsParams{
+		Limit:  req.PageSize,
 		Offset: (req.PageID - 1) * req.PageSize,
 	}
 
