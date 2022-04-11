@@ -11,8 +11,11 @@ import (
 )
 
 func createRandomAccount(t *testing.T) Accounts {
+
+	user := createRandomUser(t)
+
 	arg := CreateAccountParams{
-		Owner:    util.RandomOwnerName(),
+		Owner:    user.Username,
 		Balance:  util.RandomMoney(),
 		Currency: util.RandomCurrency(),
 	}
@@ -84,7 +87,7 @@ func TestListAccounts(t *testing.T) {
 	}
 
 	arg := ListAccountsParams{
-		Limit: 5,
+		Limit:  5,
 		Offset: 5,
 	}
 

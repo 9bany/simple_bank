@@ -21,6 +21,6 @@ func main() {
 	}
 
 	store := db.NewStore(conn)
-	server := api.NerServer(store)
+	server := api.NewServer(store)
 	server.Start(config.ServerAddress)
 }
