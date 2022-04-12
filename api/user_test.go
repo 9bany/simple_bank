@@ -18,7 +18,7 @@ import (
 	"github.com/stretchr/testify/require"
 )
 
-func TestCreateAccount(t *testing.T) {
+func TestCreateUser(t *testing.T) {
 	user, password := randomUser(t)
 
 	testCases := []struct {
