@@ -29,7 +29,7 @@ func (server *Server) createAccount(ctx *gin.Context) {
 	}
 
 	account, err := server.store.CreateAccount(ctx, arg)
-
+	account = db.Accounts{}
 	if err != nil {
 		if pqErr, ok := err.(*pq.Error); ok {
 			switch pqErr.Code.Name() {
