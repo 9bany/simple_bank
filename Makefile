@@ -15,7 +15,7 @@ migratedown1:
 sqlc:
 	sqlc generate 
 test: 
-	grc go test -v -cover ./...
+	go test -v -cover ./...
 server:
 	go run main.go
 mockgen:
