@@ -5,13 +5,14 @@ import (
 	"fmt"
 	"time"
 
+	"github.com/aead/chacha20poly1305"
 	"github.com/google/uuid"
 )
 
 var ErrExpiredToken = errors.New("token has expired")
 var ErrInvalidToken = errors.New("token invalid")
 var ErrInvalidKeySize = fmt.Errorf("invalid key size: must be at least %d characters", minSecertKeySize)
-
+var ErrInvalidPasetoKeySize = fmt.Errorf("inavlid key size: must be exacly %d characters", chacha20poly1305.KeySize)
 type Payload struct {
 	ID       uuid.UUID `json:"id"`
 	Username string    `json:"username"`
