@@ -31,4 +31,7 @@ WHERE id = $1;
 
 -- name: ListAccounts :many
 SELECT * FROM accounts
-ORDER BY owner LIMIT $1 OFFSET $2;
+WHERE owner = $1
+ORDER BY id 
+LIMIT $2
+OFFSET $3;
