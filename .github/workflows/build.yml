@@ -1,4 +1,4 @@
-name: Test unit test
+name: Build to production
 
 on:
   push:
