@@ -1,2 +1,4 @@
 # simple_bank
-- My first backend
+
+# Creact new
+- migrate create -ext sql -dir db/migration -seq <table_name>
